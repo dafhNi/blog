@@ -10,6 +10,7 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
 import os
+from flask_wtf.csrf import CSRFProtect
 
 
 # Create admin-only decorator
@@ -25,6 +26,7 @@ def admin_only(f):
 
 
 app = Flask(__name__)
+csrf = CSRFProtect(app)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 # app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
